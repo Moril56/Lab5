@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  int n; // Розмір масиву
+  printf("Введіть розмір масиву: ");
+  if (scanf("%d", &n) != 1) {
+    printf("Помилка розміру масива");
+    return 0;
+  }
+
+  int array[n]; // Оголошення масиву
+
+
+  // Заповнення масиву випадковими числами
+  for (int i = 0; i < n; i++) {
+    array[i] = rand() % 201 - 100;
+  }
+
+  // Виведення масиву
+  printf("Масив:\n");
+  for (int i = 0; i < n; i++) {
+    printf("%d ", array[i]);
+  }
+
+  // Знаходження мінімального елемента
+  int min_index = 0;
+  for (int i = 1; i < n; i++) {
+    if (array[i] < array[min_index]) {
+      min_index = i;
+    }
+  }
+  printf("\nМінімальний елемент: %d (індекс: %d)", array[min_index], min_index);
+
+  // Розрахунок добутку до першого нульового елемента
+  int product = 1;
+  int i = 0;
+  while (i < n && array[i] != 0) {
+    product *= array[i];
+    i++;
+  }
+  if (i == 0) {
+    printf("\nНемає елементів перед нульовим.");
+  } else {
+    printf("\nДобуток до першого нульового елемента: %d", product);
+  } 
+  
+  return 0;
+}
