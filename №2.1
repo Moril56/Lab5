@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Введіть розмірність масиву: ");
+   if (scanf("%d", &n) != 1){
+     printf("Помилка введення n\n");
+     return 0; 
+   }
+    // Введення масиву
+    int array[n];
+    printf("Введіть %d цілих чисел:\n", n);
+    for (int i = 0; i < n; i++) {
+       if (scanf("%d", &array[i]) != 1){
+         printf("Помилка введення array\n");
+         return 0;
+       }
+    }
+
+    // Знаходження номера мінімального елемента масиву
+    int min_index = 0;
+    for (int i = 1; i < n; i++) {
+        if (array[i] < array[min_index]) {
+            min_index = i;
+        }
+    }
+
+    // Обчислення добутку елементів масиву до першого нульового
+    int zero = 1;
+    for (int i = 0; i < n; i++) {
+        if (array[i] == 0) {
+            break;
+        }
+        zero *= array[i];
+    }
+
+    // Виведення результатів
+    printf("Номер мінімального елемента масиву: %d\n", min_index);
+    printf("Добуток елементів масиву до першого нульового елемента: %d\n", zero);
+
+    return 0;
+}
